@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For my Wife eieie ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at 30% 30%, #ff9a9e, #b3686b, #1a0f14);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* เพิ่มเอฟเฟกต์สปาร์คเคิลพื้นหลัง */
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+.sparkle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+    animation: sparkle 3s infinite;
+}
+
+/* เพิ่มเอฟเฟกต์กลีบกุหลาบ */
+@keyframes petalFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.petal {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+    border-radius: 100% 0 100% 0;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: petalFall 8s linear infinite;
+}
+
+.container {
+    text-align: center;
+    padding: 50px 0;
+    z-index: 10;
+}
+
+/* ซองอลังการขึ้น */
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 200px;
+    cursor: pointer;
+    perspective: 1500px;
+    margin: auto;
+    filter: drop-shadow(0 20px 40px rgba(255, 20, 147, 0.5));
+    animation: floatEnvelope 3s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #fff5f7, #ffd6e0);
+    border-radius: 20px;
+    box-shadow: 
+        0 30px 60px rgba(0,0,0,0.6),
+        0 0 50px rgba(255,105,180,0.7),
+        inset 0 -10px 30px rgba(255,20,147,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* เพิ่มลวดลายให้ซอง */
+.envelope-body::before {
+    content: "❤️";
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    font-size: 24px;
+    opacity: 0.2;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.envelope-body::after {
+    content: "❤️";
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+    font-size: 24px;
+    opacity: 0.2;
+    animation: heartbeat 1.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.envelope-flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: linear-gradient(to bottom, #ff1f5a, #ff1493);
+    clip-path: polygon(0 0, 50% 75%, 100% 0);
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: inset 0 10px 20px rgba(255,255,255,0.5);
+}
+
+.envelope-flap::after {
+    content: "✨";
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    font-size: 30px;
+    color: gold;
+    text-shadow: 0 0 20px gold;
+    animation: twinkle 1s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(-180deg);
+}
+
+/* การ์ดอลังการขึ้น */
+.card {
+    display: none;
+    margin: 40px auto;
+    width: 95vw;
+    max-width: 460px;
+    background: linear-gradient(135deg, #fff9fa, #fff0f5);
+    border-radius: 40px;
+    padding: 25px;
+    box-shadow: 
+        0 40px 90px rgba(255,20,147,0.4),
+        0 0 100px rgba(255,105,180,0.3),
+        inset 0 -5px 20px rgba(255,192,203,0.5);
+    border: 3px solid rgba(255,255,255,0.8);
+    position: relative;
+    animation: cardAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center;
+}
+
+@keyframes cardAppear {
+    0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ขอบการ์ดสวยงาม */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid rgba(255,182,193,0.5);
+    border-radius: 50px;
+    pointer-events: none;
+    animation: borderGlow 2s infinite alternate;
+}
+
+@keyframes borderGlow {
+    from { border-color: rgba(255,182,193,0.5); box-shadow: 0 0 20px rgba(255,105,180,0.3); }
+    to { border-color: rgba(255,105,180,0.8); box-shadow: 0 0 40px rgba(255,20,147,0.5); }
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-content img {
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(255,20,147,0.3);
+    border: 4px solid white;
+    transition: all 0.5s ease;
+}
+
+.card-content img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 45px rgba(255,20,147,0.5);
+}
+
+/* ข้อความในกรอบสวยงาม */
+.message {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4a1a2c;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 
+        inset 0 0 30px rgba(255,192,203,0.3),
+        0 10px 20px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.8);
+    position: relative;
+}
+
+.message::before {
+    content: "🫶";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 30px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.message::after {
+    content: "🫶";
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    font-size: 30px;
+    animation: heartbeat 1.5s infinite 0.7s;
+}
+
+/* รูปลอยอลังการขึ้น */
+.floating-img {
+    position: fixed;
+    width: 220px;
+    border-radius: 25px;
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.5),
+        0 0 50px rgba(255,105,180,0.5);
+    animation: floatGlide 7s ease-in-out infinite;
+    z-index: 5;
+    opacity: 0.95;
+    border: 4px solid rgba(255,255,255,0.6);
+    transition: all 0.5s ease;
+}
+
+.floating-img:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 25px 50px rgba(255,20,147,0.7);
+    border-color: white;
+}
+
+.left-float {
+    left: 20px;
+    bottom: 20px;
+    animation: floatGlide 8s ease-in-out infinite;
+}
+
+.right-float {
+    right: 20px;
+    bottom: 20px;
+    animation-delay: 4s;
+    animation: floatGlide 8s ease-in-out infinite 4s;
+}
+
+/* ===== ซ่อนรูปลอยซ้าย/ขวาตอนเริ่มต้น ===== */
+.left-float,
+.right-float {
+    display: none;
+}
+
+@keyframes floatGlide {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    33% { transform: translateY(-80px) rotate(2deg); }
+    66% { transform: translateY(-40px) rotate(-1deg); }
+}
+
+/* หัวใจอลังการขึ้น */
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 28px;
+    animation: floatUp 7s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+    z-index: 1;
+}
+
+.heart:nth-child(1) { left: 5%; color: #ff69b4; animation-delay: 0s; font-size: 32px; }
+.heart:nth-child(2) { left: 25%; color: #ff1493; animation-delay: 1.5s; font-size: 28px; }
+.heart:nth-child(3) { left: 45%; color: #ffb6c1; animation-delay: 3s; font-size: 36px; }
+.heart:nth-child(4) { left: 65%; color: #ff7eb9; animation-delay: 2s; font-size: 30px; }
+.heart:nth-child(5) { left: 85%; color: #ff4d6d; animation-delay: 4s; font-size: 34px; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+/* เพิ่มริบบิ้น */
+.ribbon {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -5px 15px rgba(255,20,147,0.5);
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    width: 40px;
+    height: 25px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    border-radius: 0 25px 25px 0;
+}
+
+.ribbon::before {
+    left: -35px;
+    transform: rotate(-25deg);
+}
+
+.ribbon::after {
+    right: -35px;
+    transform: rotate(25deg);
+}
+
+/* เพิ่ม Confetti เมื่อเปิดซอง */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .floating-img {
+        width: 150px;
+    }
+    
+    .envelope {
+        width: 240px;
+        height: 170px;
+    }
+}
+</style>
+</head>
+
+<body>
+<!-- เอฟเฟกต์สปาร์คเคิลพื้นหลัง -->
+<script>
+for(let i = 0; i < 30; i++) {
+    let sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.top = Math.random() * 100 + '%';
+    sparkle.style.animationDelay = Math.random() * 3 + 's';
+    sparkle.style.width = sparkle.style.height = Math.random() * 8 + 4 + 'px';
+    document.body.appendChild(sparkle);
+}
+</script>
+
+<!-- เอฟเฟกต์กลีบกุหลาบ -->
+<script>
+for(let i = 0; i < 20; i++) {
+    let petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.left = Math.random() * 100 + '%';
+    petal.style.animationDelay = Math.random() * 8 + 's';
+    petal.style.animationDuration = Math.random() * 5 + 6 + 's';
+    petal.style.width = petal.style.height = Math.random() * 15 + 10 + 'px';
+    document.body.appendChild(petal);
+}
+</script>
+
+<!-- รูปลอยซ้าย (ซ่อนไว้ก่อน) -->
+<img src="https://cdn.discordapp.com/attachments/1393925576607142031/1471112511054020809/image.jpg?ex=698dbfca&is=698c6e4a&hm=0b68b39fae4f05f4cf517558d540ba4f8b7c743415bfb5fa411b73d21b8848a7&"
+     class="floating-img left-float">
+
+<!-- รูปลอยขวา (ซ่อนไว้ก่อน) -->
+<img src="https://cdn.discordapp.com/attachments/1393925576607142031/1471112510101782642/image.jpg?ex=698dbfca&is=698c6e4a&hm=f9383140fe2f3c106bc647387b6f7452e1c7d10e3db7ef7e7ec67f46075b4c92&"
+     class="floating-img right-float">
+
+<!--หัวใจลอยออกมา (อลังการขึ้น)-->
+<div class="heart" style="left:5%">❤️</div>
+<div class="heart" style="left:25%">💖</div>
+<div class="heart" style="left:45%">💕</div>
+<div class="heart" style="left:65%">💗</div>
+<div class="heart" style="left:85%">💘</div>
+
+<div class="container">
+    
+    <div class="envelope" onclick="openLetter(this)">
+        <div class="envelope-body"></div>
+        <div class="envelope-flap"></div>
+        <div class="ribbon"></div>
+    </div>
+
+    <div class="card" id="loveCard">
+        <div class="card-content">
+
+            <img src="https://cdn.discordapp.com/attachments/1393925576607142031/1470793961680666667/IMG_0660.png?ex=698d3fde&is=698bee5e&hm=6caa91e492b924bc62e2027c9e1c4db84d65633006815cb477fa9ba6c784d90c&">
+
+            <div class="message">
+                <h2>สุขสันต์วันวาเลนไทน์นะคะบิบี๋ของเค้าาา 😸😸</h2>
+                <p>
+                    สุขสันต์วันวาเลนไทน์นะแฟนนนน เราเป็นแฟนกันมา2เดือนแล้ววว ไววม้ากกเค้าน่าจะจีบแฟนตั้งแต่ม.4นะะ 4364535555
+                    บิบี๋ทำให้เค้าสดใสขึ้นมากกเยยนะะ บิบี๋รู้ม้ายยเวลาาเค้าหมดไฟหรือเหนื่อยจากรร.มา บิบบี๋จะเป้นทั้งกำลังใจ
+                    และเซฟโซนเค้าเลยะคะ เค้าอยากพาแฟนไปเท่ววทุกที่เลยยย พาไปกินของอร่อยยยเค้าอย่าพาแฟนไปที่เชียงใหม่มั่กกกเค้าจะพาแฟนไป
+                    ร้านน้าเค้าาา ถ้าอยุ่คนละที่เค้าคิดถึงแย่แน่เลยย🫠🫠 แฟนเป้นคนที่อบอุ่นม้าก ม้ากที่่สุดที่เค้าเคยเจอเลย แฟนทำให้เค้ามีความสุขข
+                    มีเอนเนอจี้ทุ้กกวันนน เค้าอยากอยุ่กับแฟนนไปจนโตเยยนะะ 2 เดือนที่ผ่าานมามันเร้วจิงๆนะะ 
+                    แต่สำหรับเค้ามันเป้น2เดือนที่เค้ามีความสุขที่สุดเลยนะคะบิบี๋ เค้าร้ากกแฟนนนนที่สุดในโล้กกเล้ย้ยยย
+                    เค้าจะดูแลแฟนเค้าให้ดีที่สุดเลยนะคะ ไม่ว่าจะเกิดอะไรขึ้นเค้าจะอยู่ข้างๆแฟนนตลอดดปัยยยยย อยากจะอยู่กับบิบี๋ไปจนโตตต
+                    เค้าก้จะพาบิบบี๋เท่ว่วววว อยากใช้ชีวิตกับแฟนนน เค้าจะนอนนจุ้บจุ้บบแฟนทั้งวันนน จะเติมมแฟนนน อยากกอดดดๆ 
+                     ถ้าขึ้นมหาลัยไปแล้ว เค้าจะไปหาแฟนบ่อยๆเยยนะคะ ถ้าขึ้นมหาลัยไปเค้าอยากให้แฟนเค้าเชื่อใจเค้านะคะ
+                     เค้าจะไม่ยุ่งกับผญ คนอื่นๆ เค้าจะตั้งใจเรียนเพื่อมีอนาคตไปด้วยกันนน เค้าจะเลี้ยงแฟนให้อ้วนเล้ยยย  อิอิอิ 
+                     อยู่กับเค้าไปนานๆเลยนะคะบิบบี๋🫶🫶🫶
+                </p>
+                <h2><p><strong>เค้าร้ากกแฟนร้ากมากกกขึ้นทุกวันน อยู่กับเค้าไปนานๆเลยนะคะบิบี๋ ❤️😻</strong></p></h2>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- 🎵 เพลงอยู่ตรงนี้ (ไม่ยุ่ง) -->
+<audio id="bgMusic" src="https://cdn.discordapp.com/attachments/1393925576607142031/1471137501765832817/Three_Man_Down_-_a1_a__a_a__a_a_a___SPOTISAVER1_mp3cut.net.mp3?ex=698dd710&is=698c8590&hm=2475a89b7dbfbcfeed6611e707f3554c03aba5b91c6d3d6bf3e82db03311bf86&"></audio>
+
+<script>
+function openLetter(el){
+    el.classList.add("open");
+    document.getElementById("loveCard").style.display="block";
+    
+    let music = document.getElementById("bgMusic");
+    music.play();
+    
+    // ===== แสดงรูปลอยซ้ายและขวาเมื่อเปิดซอง =====
+    let leftImg = document.querySelector('.left-float');
+    let rightImg = document.querySelector('.right-float');
+    if (leftImg) leftImg.style.display = 'inline-block';
+    if (rightImg) rightImg.style.display = 'inline-block';
+    
+    // สร้าง Confetti เมื่อเปิดซอง
+    for(let i = 0; i < 100; i++) {
+        createConfetti();
+    }
+}
+
+function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+    confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+    confetti.style.background = `linear-gradient(45deg, hsl(${Math.random() * 60 + 300}, 100%, 70%), hsl(${Math.random() * 60 + 300}, 100%, 60%))`;
+    confetti.style.width = confetti.style.height = Math.random() * 15 + 8 + 'px';
+    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => {
+        confetti.remove();
+    }, 5000);
+}
+</script>
+
+</body>
+</html>
